@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SustyDigi Marketers Pvt. Ltd.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #ffffff;
+        color: #1f2937;
+      }
+
+      /* Hide scrollbar for all major browsers */
+      html, body {
+        /* Hide scrollbar for IE, Edge and Firefox */
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      html::-webkit-scrollbar,
+      body::-webkit-scrollbar {
+        display: none;
+      }
+
+      .gradient-text {
+        background: linear-gradient(90deg, #4f46e5, #ec4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+      @keyframes moveBubble1 {
+        0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        50% { transform: translate(80px, -40px) scale(1.1) rotate(15deg); }
+      }
+      @keyframes moveBubble2 {
+        0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        50% { transform: translate(-60px, 50px) scale(0.9) rotate(-10deg); }
+      }
+      @keyframes moveBubble3 {
+        0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+        50% { transform: translate(40px, 80px) scale(1.05) rotate(5deg); }
+      }
+      .animate-bubble1 {
+          animation: moveBubble1 18s ease-in-out infinite;
+      }
+      .animate-bubble2 {
+          animation: moveBubble2 22s ease-in-out infinite alternate;
+      }
+      .animate-bubble3 {
+          animation: moveBubble3 15s ease-in-out infinite;
+      }
+      @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100%); }
+      }
+      .animate-scroll {
+        animation: scroll 40s linear infinite;
+      }
+      .fade-edges {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 20%, black 80%, transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, black 20%, black 80%, transparent 100%);
+      }
+      
+      /* New animations for Hero Section */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+      .hero-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+      }
+      .hero-fade-in-up {
+        opacity: 0; /* Prevent flash of content before animation */
+        animation: fadeInUp 0.8s ease-out forwards;
+      }
+
+      /* Animation for process line drawing */
+      @keyframes draw-line {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      .line-drawing {
+        stroke-dasharray: 1500;
+        stroke-dashoffset: 1500;
+        animation: draw-line 2s ease-out 0.3s forwards;
+      }
+      
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+      }
+      .animate-float {
+        animation: float 6s ease-in-out infinite;
+      }
+
+      /* Styles for Chat Assistant */
+      .chat-window {
+        transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+      }
+      .chat-window-hidden {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        pointer-events: none;
+      }
+      .chat-window-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      
+      /* Custom scrollbar for chat */
+      .chat-messages::-webkit-scrollbar {
+        width: 6px;
+      }
+      .chat-messages::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+      }
+      .chat-messages::-webkit-scrollbar-thumb {
+        background: #a5b4fc;
+        border-radius: 10px;
+      }
+      .chat-messages::-webkit-scrollbar-thumb:hover {
+        background: #818cf8;
+      }
+
+      /* Styles for Appointment Popup */
+      .popup-container {
+        transition: opacity 0.3s ease-out;
+      }
+      .popup-panel {
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .popup-hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      .popup-hidden .popup-panel {
+        transform: translateY(20px) scale(0.95);
+      }
+      .popup-visible {
+        opacity: 1;
+      }
+      .popup-visible .popup-panel {
+        transform: translateY(0) scale(1);
+      }
+
+      /* ===== NEW STYLES ===== */
+      
+      /* Scroll down indicator */
+      @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+          transform: translateY(0);
+        }
+        40% {
+          transform: translateY(-15px);
+        }
+        60% {
+          transform: translateY(-8px);
+        }
+      }
+      .animate-bounce-slow {
+        animation: bounce 2.5s infinite;
+      }
+
+      /* Staggered animation helper */
+      .stagger-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      }
+      .stagger-in.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      /* Enhanced Card Hover */
+      .service-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .service-card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      }
+      .service-card:hover .service-icon {
+        transform: scale(1.2) rotate(-15deg);
+        color: #ec4899; /* pink */
+      }
+      .service-icon {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Why choose us background pattern */
+      .pattern-bg {
+        background-image: radial-gradient(circle at center, #f3f4f6 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      @keyframes fade-in-quick {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-fade-in {
+        animation: fade-in-quick 0.5s ease-out forwards;
+      }
+
+      /* Logo scroller pause on hover */
+      .scroller:hover .animate-scroll {
+        animation-play-state: paused;
+      }
+      
+      /* CTA background elements */
+      .cta-shape {
+        position: absolute;
+        border-radius: 9999px;
+        background: rgba(255, 255, 255, 0.1);
+        transition: all 1s ease-in-out;
+        animation: float 8s ease-in-out infinite alternate;
+      }
+      .cta-shape-1 {
+        width: 150px;
+        height: 150px;
+        top: -50px;
+        left: 15%;
+        animation-delay: 0s;
+      }
+      .cta-shape-2 {
+        width: 80px;
+        height: 80px;
+        bottom: -20px;
+        right: 10%;
+        animation-delay: 2s;
+      }
+      
+      /* Project card text on hover refinement */
+      .project-card-details {
+        transform: translateY(100%);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .group:hover .project-card-details {
+        transform: translateY(0);
+      }
+      .project-card-title,
+      .project-card-result,
+      .project-card-link {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .group:hover .project-card-title {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.1s;
+      }
+      .group:hover .project-card-result {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+      .group:hover .project-card-link {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.3s;
+      }
+      
+      /* New styles for Blog Page */
+      .blog-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .blog-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      }
+      .blog-card .blog-card-image {
+        transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .blog-card:hover .blog-card-image {
+        transform: scale(1.05);
+      }
+
+      /* Director Card Hover Effect */
+      .director-card .info-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        padding: 1.5rem; /* p-6 */
+        opacity: 0;
+        transform: translateY(100%);
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .director-card:hover .info-container {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .director-card .info-container h3,
+      .director-card .info-container p {
+        transform: translateY(20px);
+        opacity: 0;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      .director-card:hover .info-container h3 {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.2s;
+      }
+      .director-card:hover .info-container p {
+        transform: translateY(0);
+        opacity: 1;
+        transition-delay: 0.3s;
+      }
+      .director-card .director-card-overlay {
+        background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+      .director-card:hover .director-card-overlay {
+        opacity: 1;
+      }
+
+      /* Commitment Section Icon hover */
+      .commitment-card:hover .commitment-icon-bg {
+        transform: scale(1.1);
+        box-shadow: 0 0 25px rgba(99, 102, 241, 0.3); /* indigo-500 shadow */
+      }
+      .commitment-card:hover .commitment-icon {
+        transform: rotate(-15deg) scale(1.1);
+        color: #ec4899; /* pink-500 */
+      }
+      .commitment-icon-bg, .commitment-icon {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Products Page: Feature Item Hover */
+      .feature-item {
+        transition: all 0.3s ease-in-out;
+      }
+      .feature-item:hover {
+        background-color: #f9fafb; /* gray-50 */
+        transform: translateX(5px);
+      }
+      .feature-item:hover .feature-icon-bg {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+      }
+      .feature-icon-bg {
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+
+      /* Products Page: Ecosystem Card Hover */
+      .ecosystem-card {
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .ecosystem-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+      }
+      .ecosystem-card:hover .ecosystem-image {
+        transform: scale(1.05);
+      }
+      .ecosystem-image {
+        transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+
+      /* Domain Page: Skeleton Loader */
+      @keyframes shimmer {
+        0% { background-position: -1000px 0; }
+        100% { background-position: 1000px 0; }
+      }
+      .skeleton-loader {
+        background: linear-gradient(to right, #f0f0f0 8%, #e0e0e0 18%, #f0f0f0 33%);
+        background-size: 2000px 100%;
+        animation: shimmer 1.5s infinite;
+      }
+
+      /* Domain Page: Result Card Animation */
+      @keyframes slide-up-fade-in {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-result-card {
+        animation: slide-up-fade-in 0.5s ease-out forwards;
+        opacity: 0;
+      }
+
+      @keyframes pulse-green {
+        0%, 100% {
+          box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+        }
+        50% {
+          box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+        }
+      }
+      .animate-pulse-green {
+        animation: pulse-green 2s infinite;
+      }
+
+      /* World Map Dot Animation */
+      @keyframes pulse-dot {
+        0% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7);
+        }
+        70% {
+          transform: scale(1);
+          box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+        }
+        100% {
+          transform: scale(0.95);
+          box-shadow: 0 0 0 0 rgba(79, 70, 229, 0);
+        }
+      }
+      .map-dot:hover .map-dot-label {
+        opacity: 1;
+        transform: translateY(-0.5rem) scale(1);
+      }
+
+      /* Dashboard styles */
+      .dashboard-layout {
+        display: flex;
+        min-height: 100vh;
+        background-color: #111827; /* gray-900 */
+      }
+      .dashboard-sidebar {
+        width: 256px;
+        background-color: #1f2937; /* gray-800 */
+        border-right: 1px solid #374151; /* gray-700 */
+      }
+      .dashboard-content {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .dashboard-nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.75rem 1.25rem;
+        border-radius: 0.375rem;
+        color: #9ca3af; /* gray-400 */
+        transition: all 0.2s;
+      }
+      .dashboard-nav-link:hover {
+        background-color: #374151; /* gray-700 */
+        color: #ffffff;
+      }
+      .dashboard-nav-link.active {
+        background-color: #4f46e5; /* indigo-600 */
+        color: #ffffff;
+        font-weight: 600;
+      }
+      
+      .db-card {
+        background-color: rgba(31, 41, 55, 0.8); /* gray-800 with opacity */
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(55, 65, 81, 0.8); /* gray-700 with opacity */
+      }
+
+      .db-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .db-table th, .db-table td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid #374151; /* gray-700 */
+      }
+      .db-table th {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #9ca3af; /* gray-400 */
+      }
+      .db-table tbody tr:hover {
+        background-color: #1f2937; /* gray-800 */
+      }
+      
+      /* Basic styles for legal pages */
+      .prose h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2em;
+        margin-bottom: 1em;
+      }
+      .prose p, .prose li {
+        line-height: 1.75;
+        margin-bottom: 1.25em;
+      }
+      .prose a {
+        color: #4f46e5;
+        text-decoration: none;
+      }
+      .prose a:hover {
+        text-decoration: underline;
+      }
+      .prose ul {
+        list-style-type: disc;
+        padding-left: 2rem;
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react-router-dom": "https://aistudiocdn.com/react-router-dom@^7.9.3",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.22.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script>
+      // Polyfill 'process' for browser environments where it's not defined.
+      // This prevents a ReferenceError from libraries (like @google/genai) that
+      // were built assuming a Node.js environment.
+      if (typeof process === 'undefined') {
+        window.process = { env: {} };
+      }
+    </script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" data-type="module" src="./index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
